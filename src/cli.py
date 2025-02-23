@@ -1,5 +1,6 @@
 from .operations import *
-from os import system
+import os
+
 
 def execute_menu():
     while True:
@@ -17,19 +18,19 @@ def execute_menu():
 
         # ADD
         if opcion == "1": 
-            system("clear")
+            os.system("cls" if os.name == "nt" else "clear")
             name = input("Nombre del producto: ")
             category = input("Categoría: ")
             price = float(input("Precio: "))
             product_create(name, category, price)
-            system("clear")
+            os.system("cls" if os.name == "nt" else "clear")
             print("Producto agregado con éxito.")
         
         # DELETE
         elif opcion == "2":
             id = int(input("ID del producto: "))
             product_delete(id)
-            system("clear")
+            os.system("cls" if os.name == "nt" else "clear")
             print("Producto eliminado con éxito.")
 
         # BUY
@@ -37,7 +38,7 @@ def execute_menu():
             id = int(input("ID del producto: "))
             amount = int(input("Cantidad: "))
             success = register_buy(id, amount)
-            system("clear")
+            os.system("cls" if os.name == "nt" else "clear")
             
             if success == None:
                 print("Producto Inexistente.")
@@ -50,27 +51,27 @@ def execute_menu():
             amount= int(input("Cantidad: "))
 
             success = register_sale(id, amount)
-            system("clear")
+            os.system("cls" if os.name == "nt" else "clear")
 
             if success == None:
                 print("Venta sin éxito.")
             else:
-                system("clear")
+                os.system("cls" if os.name == "nt" else "clear")
                 print("Venta realizada con éxito.")
 
         # LIST PRODUCT
         elif opcion == "5":
-            system("clear")
+            os.system("cls" if os.name == "nt" else "clear")
             products = product_list()
             for p in products:
-                print(f"ID: {p.id}, Nombre: {p.name}, Categoría: {p.category}, Precio: {p.price}, Stock: {p.current_stock}")
+                print(f"ID: {p.id}, Nombre: {p.name}, Categoría: {p.category}, Precio: ${p.price}, Stock: {p.current_stock}")
 
 
             print("-----------------------------------------------------------------------")
 
         # LOW STOCK LIST
         elif opcion == "6":
-            system("clear")
+            os.system("cls" if os.name == "nt" else "clear")
             products = list_low_stock()
             for p in products:
                 print(f"ID: {p.id}, Nombre: {p.name}, Stock: {p.current_stock}")
@@ -82,7 +83,7 @@ def execute_menu():
             id = int(input("ID del producto: "))
             new_price = float(input("Nuevo precio: "))
             success = update_price_product(id,new_price)
-            system("clear")
+            os.system("cls" if os.name == "nt" else "clear")
             if success == None:
                 print("Producto inexistente.")
             else:
@@ -90,7 +91,7 @@ def execute_menu():
 
         # EXIT
         elif opcion == "8":
-            system("clear")
+            os.system("cls" if os.name == "nt" else "clear")
             print("¡Hasta luego!")
             break
 
